@@ -1,4 +1,4 @@
-function renderMultipleChoiceImgSoundMarkup(
+export function renderMultipleChoiceImgSoundMarkup(
   arrayOfElements,
   rightAnswer,
   taskWrapper
