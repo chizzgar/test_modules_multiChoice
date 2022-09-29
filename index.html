@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="common_files/trainers_styles/commom_styles/_common_styles.css">
     <link rel="stylesheet" href="common_files/trainers_styles/commom_styles/main.css">
     <link rel="stylesheet" href="">
-    
+
     <link rel="stylesheet" href="style.css">
     <script defer src="js-data/" type="module"></script>
     <script defer src="js-data/" type="module"></script>
@@ -19,83 +19,111 @@
 
 <body>
     <div class="container">
-       
+        
 
-       
+        <nav style="margin: 20px" class="navigation">
+            <a href="/">На главную</a>
+        </nav>
+
+
+        <h3>
+            Множественный выбор - Выбери и отметь мебель для кухни.
+        </h3>
+        <h4>ответ: стол со стульями и кухонный шкаф</h4>
+        <!-- в поле id указывается уникальный id для данного задания -->
+
+        <div class="border-container" id="task-5">
+            <div class="multiChoicePictureSoundWrapper">
+                <div class="multiChoicePictureSoundList"></div>
+            </div>
+            <!-- блок с кнопками проверки -->
+
+            <div class="show-answer-controls checkTask">
+                <div type="button" class="resetButton taskBtn">
+                    СБРОС
+                    <div class="reloadIconTask">&#8635;</div>
+                </div>
+                <div class="show-answer-info chek_answer"></div>
+                <div type="button" class="checkButton taskBtn">
+                    <div class="checkIconTask">&#10004;</div>
+                    ПРОВЕРИТЬ
+                </div>
+            </div>
+        </div>
+
+
 
     </div>
     <div class="container">
         <nav style="margin: 20px" class="navigation">
-          <a href="/">На главную</a>
+            <a href="/">На главную</a>
         </nav>
-    
+
         <h3>
-          Таскалка - 4(5) элементов в 1 область (максимум 5 областей) Могут быть
-          картинкой/картинка+текст/картинка+текст+звук,  в область с
-          картинкой/картинка+текст/картинка+текст+звук⬇
+            Таскалка - 4(5) элементов в 1 область (максимум 5 областей) Могут быть
+            картинкой/картинка+текст/картинка+текст+звук, в область с
+            картинкой/картинка+текст/картинка+текст+звук⬇
         </h3>
         <!-- в поле id указывается уникальный id для данного задания -->
-    
+
         <div class="border-container" id="dnd_wishSlider_task-1">
-          <div class="withSlider_comparePicturesWrapper">
-            <div class="withSlider_dropPlaceWrapper"></div>
-            <div class="withSlider_dragPlaceWrapper">
-              
-              <div class="scrollBar_button arrowButton_left_event">
-                <div class="scrollBar_arrow scrollBar_arrow_left"></div>
-              </div>
-    
-              <div class="withSlider_sliderContent">
-                <div class="withSlider_slider_box"></div>
-              </div>
-    
-              <div class="scrollBar_button arrowButton_right_event">
-                <div class="scrollBar_arrow scrollBar_arrow_right"></div>
-              </div>
+            <div class="withSlider_comparePicturesWrapper">
+                <div class="withSlider_dropPlaceWrapper"></div>
+                <div class="withSlider_dragPlaceWrapper">
+
+                    <div class="scrollBar_button arrowButton_left_event">
+                        <div class="scrollBar_arrow scrollBar_arrow_left"></div>
+                    </div>
+
+                    <div class="withSlider_sliderContent">
+                        <div class="withSlider_slider_box"></div>
+                    </div>
+
+                    <div class="scrollBar_button arrowButton_right_event">
+                        <div class="scrollBar_arrow scrollBar_arrow_right"></div>
+                    </div>
+                </div>
             </div>
-          </div>
-          <!-- блок с кнопками проверки -->
-    
-          <div class="checkTask">
-            <div type="button" class="reloadTask taskBtn">
-              СБРОС
-              <div class="reloadIconTask">&#8635;</div>
+            <!-- блок с кнопками проверки -->
+
+            <div class="checkTask">
+                <div type="button" class="reloadTask taskBtn">
+                    СБРОС
+                    <div class="reloadIconTask">&#8635;</div>
+                </div>
+
+                <div class="chek_answer"></div>
+
+                <div type="button" class="checkingTask taskBtn">
+                    <div class="checkIconTask">&#10004;</div>
+                    ПРОВЕРИТЬ
+                </div>
             </div>
-    
-            <div class="chek_answer"></div>
-    
-            <div type="button" class="checkingTask taskBtn">
-              <div class="checkIconTask">&#10004;</div>
-              ПРОВЕРИТЬ
-            </div>
-          </div>
         </div>
-        
-      </div>
-      <div class="container">
+
+    </div>
+    <div class="container">
         <nav style="margin: 20px" class="navigation">
-          <a href="/">На главную</a>
+            <a href="/">На главную</a>
         </nav>
-  
+
         <h3>Слайд-шоу - Картинка+звук+текст ⬇</h3>
         <!-- в поле id указывается уникальный id для данного задания -->
         <div class="border-container" id="slodeShow_1_task-1">
-          <div class="slideShow_1_ContentBox">
-            <div class="gallery_arrow gallery_arrow_left">
+            <div class="slideShow_1_ContentBox">
+                <div class="gallery_arrow gallery_arrow_left">
+                </div>
+                <div class="slideShow_1_Content"></div>
+                <div class="gallery_arrow gallery_arrow_right">
+                </div>
             </div>
-            <div class="slideShow_1_Content"></div>
-            <div class="gallery_arrow gallery_arrow_right">
+            <div class="slideShow_1_Content_sliderCounter">
+                <div class="slideShow_1_Content_sliderCounter__actual slideShow_1_Counter-actual"></div>/<div
+                    class="slideShow_1_Counter"></div>
             </div>
-          </div>
-          <div class="slideShow_1_Content_sliderCounter">
-            <div
-              class="slideShow_1_Content_sliderCounter__actual slideShow_1_Counter-actual"
-            ></div
-            >/<div class="slideShow_1_Counter"></div>
-          </div>
         </div>
-      </div>
-    
+    </div>
+
 </body>
 
 </html>
