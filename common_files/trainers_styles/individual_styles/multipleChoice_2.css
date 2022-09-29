@@ -1,0 +1,111 @@
+.multipleChoice_2_Wrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+
+  align-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.multipleChoice_2_List {
+  width: 100%;
+  user-select: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+}
+
+.multipleChoice_2_Card {
+  user-select: none;
+
+  background-color: #ffffff;
+  box-sizing: border-box;
+
+  padding: 2px 2px;
+  position: relative;
+  box-shadow: -5px -5px 15px #ffffff, 5px 5px 15px #e9ecf4;
+  border-radius: 8px;
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: space-around;
+
+  align-items: center;
+  transition: all 0.2s ease;
+
+  text-align: center;
+}
+
+.multipleChoice_2_Card:hover {
+  cursor: pointer;
+  box-shadow: -5px -5px 15px #ecebeb, 5px 5px 15px #c3c6ce;
+  transition: all 0.2s ease;
+}
+
+.multipleChoice_2_Card:active {
+  box-shadow: -5px -5px 15px #ecebeb, 5px 5px 15px #c3c6ce;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.multipleChoice_2_Title {
+  font-size: 20px;
+  font-weight: 700;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.check {
+  border-color: rgba(29, 101, 255, 0.6431372549019608);
+  border-width: 5px;
+  animation: bg-animation 10s ease-in-out infinite;
+}
+
+@keyframes bg-animation {
+  50% {
+    transform: scale(1.2);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+}
+
+.multipleChoice_2_Card_big {
+  height: 300px;
+}
+.multipleChoice_2_Card_middle {
+  height: 250px;
+}
+.multipleChoice_2_Card_small {
+  height: 200px;
+}
+
+@media screen and (max-width: 1370px) {
+  .multipleChoice_2_Card {
+    height: 250px;
+  }
+  .multipleChoice_2_Card_big {
+    height: 300px;
+  }
+  .multipleChoice_2_Card_middle {
+    height: 200px;
+  }
+  .multipleChoice_2_Card_small {
+    height: 150px;
+  }
+  .multipleChoice_2_Title {
+    font-size: 16px;
+    margin: 5px 0 5px 0;
+    height: 80px;
+  }
+}
