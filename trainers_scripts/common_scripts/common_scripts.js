@@ -198,12 +198,12 @@ function onBtnRightClick(sliderSet, dragContainer, leftButton, rightButton) {
 
 function showArrows(sliderSet, leftButton, rightButton) {
     if (sliderSet.sliderShift === 0) {
-        leftButton.classList.add("dnd-fillRandomPlaces-Slider_is-disabled");
-    } else leftButton.classList.remove("dnd-fillRandomPlaces-Slider_is-disabled");
+        leftButton.classList.add("noDisplayElement");
+    } else leftButton.classList.remove("noDisplayElement");
 
     if (sliderSet.sliderShift <= -sliderSet.sliderSize + sliderSet.sliderWrapperSize) {
-        rightButton.classList.add("dnd-fillRandomPlaces-Slider_is-disabled");
-    } else rightButton.classList.remove("dnd-fillRandomPlaces-Slider_is-disabled");
+        rightButton.classList.add("noDisplayElement");
+    } else rightButton.classList.remove("noDisplayElement");
 }
 
 // кнопки слайдшоу
