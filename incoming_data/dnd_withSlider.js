@@ -1,3 +1,4 @@
+//import renderDndWithSliderMarkup from "./renderDndWithSliderMarkup.js";
 (() => {
   // массив входящих картинок для поля куда переносятся картинки (максимум 5-6 элементов),
   // в поле tag указывается ключевое слово для сопаставления поля для сбрасывания и картинки для сбрасывания
@@ -7,15 +8,15 @@
       name: "birch",
       src: "", //'Images_1/DOH_3-4_7_1_2.png',
       tag: "birch",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "текст loermipsum ksjhfjn wajhfjkn awjkefhujkam juahf;iwj",
     },
     {
       id: 2,
       name: "oak",
-      src: "Images_1/DOH_3-4_7_1_3.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_3.png",
       tag: "oak",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "текст",
     },
     // {
@@ -33,70 +34,70 @@
     {
       id: 1,
       name: "mapleLeaf1",
-      src: "Images_1/DOH_3-4_7_1_6.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_6.png",
       tag: "maple",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "",
     },
     {
       id: 2,
       name: "birchLeaf1",
-      src: "Images_1/DOH_3-4_7_1_7.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_7.png",
       tag: "birch",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "",
     },
     {
       id: 3,
       name: "mapleLeaf2",
-      src: "Images_1/DOH_3-4_7_1_8.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_8.png",
       tag: "maple",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "",
     },
     {
       id: 4,
       name: "oakLeaf2",
-      src: "Images_1/DOH_3-4_7_1_9.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_9.png",
       tag: "oak",
-      audioSrc: "sound/dnd_withSlider/008.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/008.mp3",
       text: "текст джлавмылдаьм ждышлвоа дфло",
     },
     {
       id: 5,
       name: "birchLeaf1",
-      src: "Images_1/DOH_3-4_7_1_10.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_10.png",
       tag: "birch",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "текст",
     },
     {
       id: 6,
       name: "oakLeaf3",
-      src: "Images_1/DOH_3-4_7_1_11.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_11.png",
       tag: "oak",
-      audioSrc: "sound/dnd_withSlider/008.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/008.mp3",
       text: "текст",
     },
     {
       id: 7,
       name: "birchLeaf2",
-      src: "Images_1/DOH_3-4_7_1_12.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_12.png",
       tag: "birch",
-      audioSrc: "sound/dnd_withSlider/007.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/007.mp3",
       text: "текст",
     },
     {
       id: 8,
       name: "mapleLeaf3",
-      src: "Images_1/DOH_3-4_7_1_13.png",
+      src: "media_content/trainers_images/dnd_withSlider/DOH_3-4_7_1_13.png",
       tag: "maple",
-      audioSrc: "sound/dnd_withSlider/009.mp3",
+      audioSrc: "media_content/trainers_sound/dnd_withSlider/009.mp3",
       text: "текст",
     },
   ];
   // это контейнер для данного задания, для каждого нужно будет вписывать свой id, который был присвоен в html
-  const task = document.getElementById("task-1");
+  const task = document.getElementById("dnd_wishSlider_task-1");
 
   renderDndWithSliderMarkup(dropCards, dragCards, task);
 })();

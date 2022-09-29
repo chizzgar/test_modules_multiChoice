@@ -1,3 +1,5 @@
+//import renderSlideShow_1 from "../common_files/trainers_scripts/individual_scripts/individual_scripts.js";
+
 (() => {
   // массив входящих данных(картинка, звук, текст)
   // количество слайдов любое
