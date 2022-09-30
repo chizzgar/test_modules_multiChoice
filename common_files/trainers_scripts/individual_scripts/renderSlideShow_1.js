@@ -230,5 +230,3 @@ export function renderSlideShow_1(sliderContent, taskId) {
     document.body.append(modal);
   }
 }
-
-export default renderSlideShow_1

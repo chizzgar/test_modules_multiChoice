@@ -1,4 +1,4 @@
-import renderDndWithSliderMarkup from "../common_files/trainers_scripts/individual_scripts/renderDndWithSliderMarkup.js";
+import {renderDndWithSliderMarkup} from "../common_files/trainers_scripts/individual_scripts/renderDndWithSliderMarkup.js";
 (() => {
   // массив входящих картинок для поля куда переносятся картинки (максимум 5-6 элементов),
   // в поле tag указывается ключевое слово для сопаставления поля для сбрасывания и картинки для сбрасывания

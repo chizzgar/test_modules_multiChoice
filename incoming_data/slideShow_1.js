@@ -1,4 +1,4 @@
-import renderSlideShow_1 from "../common_files/trainers_scripts/individual_scripts/renderSlideShow_1.js";
+import {renderSlideShow_1} from "../common_files/trainers_scripts/individual_scripts/renderSlideShow_1.js";
 
 (() => {
   // массив входящих данных(картинка, звук, текст)

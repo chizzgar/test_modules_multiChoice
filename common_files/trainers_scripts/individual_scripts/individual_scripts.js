@@ -1,9 +1,9 @@
 console.log(456);
 // import "./renderDndWithSliderMarkup";
 // import { renderDndWithSliderMarkup } from "./renderDndWithSliderMarkup";
-export  {renderDndWithSliderMarkup} from "./renderDndWithSliderMarkup.js";
-export  {renderMultipleChoiceImgSoundMarkup} from "./renderMultipleChoiceImgSoundMarkup.js";
-export  {renderSlideShow_1} from "./renderSlideShow_1.js";
+import  {renderDndWithSliderMarkup} from "./renderDndWithSliderMarkup.js";
+import  {renderMultipleChoiceImgSoundMarkup} from "./renderMultipleChoiceImgSoundMarkup.js";
+import  {renderSlideShow_1} from "./renderSlideShow_1.js";
 
 
 console.log(
