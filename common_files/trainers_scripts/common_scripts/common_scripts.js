@@ -89,14 +89,14 @@ function addWrongChoiceClass(card) {
 // управление звуком
 // пример объекта
 /*
- const dataAttribute =  "drop-data";
+ const soundDataAttribute =  "drop-data";
  let soundSetStates = {
   currentAudio: null,
   currentAudioIcon: null,
   isPlaying: false
 };
 */
-function onSoundIconClick(soundSet, allAudioFiles, elemAttribute) {
+function onSoundIconClick(soundSet, allAudioFiles, audioAttribute) {
     return function (e) {
         if (soundSet.currentAudio && soundSet.currentAudioIcon !== e.target) {
             soundSet.currentAudio.pause();
@@ -107,7 +107,7 @@ function onSoundIconClick(soundSet, allAudioFiles, elemAttribute) {
 
         e.stopPropagation();
         const audio = [...allAudioFiles].find(
-            (el) => el.id === e.target.getAttribute(elemAttribute)
+            (el) => el.id === e.target.getAttribute(audioAttribute)
         );
 
         soundSet.currentAudioIcon = e.target;
