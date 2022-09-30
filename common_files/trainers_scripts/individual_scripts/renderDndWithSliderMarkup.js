@@ -1,12 +1,38 @@
-// export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
-function renderDndWithSliderMarkup(dropCards, dragCards, task) {
+import { onSoundIconClick } from "../common_scripts/common_scripts.js";
+import { shuffleCards } from "../common_scripts/common_scripts.js";
+import { scaleImage } from "../common_scripts/common_scripts.js";
+import { changeStyles } from "../common_scripts/common_scripts.js";
+import { dragAppend } from "../common_scripts/common_scripts.js";
+import { dropAppend } from "../common_scripts/common_scripts.js";
+import { onBtnLeftClick } from "../common_scripts/common_scripts.js";
+import { onBtnRightClick } from "../common_scripts/common_scripts.js";
+import { showArrows } from "../common_scripts/common_scripts.js";
+// import { getBlocksSizes } from "../common_scripts/common_scripts.js";
+
+export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
   let draggingItem;
   let elemBelow;
-  let sliderItemWidth;
-  let sliderSize;
-  let sliderShift = 0;
+
+  // let sliderItemWidth;
+  // let sliderSize;
+  // let sliderShift = 0;
+
+  let sliderSetStates = {
+    sliderItemWidth: null,
+    sliderSize: null,
+    sliderWrapperSize: null,
+    sliderShift: 0
+  }
+  // let currentAudio;
+  // let currentAudioIcon;
+  // let isPlaying = false;
+  const soundDataAttribute = "drop-data";
+  let soundSetStates = {
+    currentAudio: null,
+    currentAudioIcon: null,
+    isPlaying: false
+  };
   let maxQuantity = 0;
-  console.log(123);
 
   const dropBox = task.querySelector(".withSlider_dropPlaceWrapper");
   const dragBox = task.querySelector(".withSlider_slider_box");
@@ -27,19 +53,19 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
   );
 
   window.onload = () => {
-    sliderSize = dragBox.scrollWidth;
-    sliderItemWidth = dragBox.children[0].clientWidth;
-    showArrows();
+    sliderSetStates.sliderSize = dragBox.scrollWidth;
+    sliderSetStates.sliderItemWidth = dragBox.children[0].clientWidth;
+    showArrows(sliderSetStates, leftBtn, rightBtn);
   };
 
-  let sliderWrapperSize = dragBox.offsetParent.clientWidth;
+  sliderSetStates.sliderWrapperSize = dragBox.offsetParent.clientWidth;
 
   task.addEventListener("pointerdown", mouseDown);
   reloadTaskBtn.addEventListener("click", onBtnResetClick);
   checkingTaskBtn.addEventListener("click", onBtnTestClick);
 
-  leftBtn.addEventListener("click", onBtnLeftClick);
-  rightBtn.addEventListener("click", onBtnRightClick);
+  leftBtn.addEventListener("click", onBtnLeftClickHandler);
+  rightBtn.addEventListener("click", onBtnRightClickHandler);
 
   dropBox.addEventListener("click", onDropBoxClick);
 
@@ -48,35 +74,12 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
     scaleImage(event.target);
   }
 
-  function showArrows() {
-    if (sliderShift === 0) {
-      leftBtn.classList.add("is-disabled");
-    } else leftBtn.classList.remove("is-disabled");
-
-    if (sliderShift <= -sliderSize + sliderWrapperSize) {
-      rightBtn.classList.add("is-disabled");
-    } else rightBtn.classList.remove("is-disabled");
+  function onBtnLeftClickHandler() {
+    onBtnLeftClick(sliderSetStates, dragBox, leftBtn, rightBtn)
   }
 
-  function onBtnLeftClick() {
-    if (sliderShift < 0) {
-      sliderShift += sliderItemWidth;
-      dragBox.style.left = `${sliderShift}px`;
-    }
-    sliderSize = dragBox.scrollWidth;
-    sliderItemWidth = dragBox.children[0].clientWidth;
-    showArrows();
-  }
-
-  function onBtnRightClick() {
-    console.log("right");
-    if (sliderShift > -sliderSize + sliderWrapperSize) {
-      sliderShift -= sliderItemWidth;
-      dragBox.style.left = `${sliderShift}px`;
-    }
-    sliderSize = dragBox.scrollWidth;
-    sliderItemWidth = dragBox.children[0].clientWidth;
-    showArrows();
+  function onBtnRightClickHandler() {
+    onBtnRightClick(sliderSetStates, dragBox, leftBtn, rightBtn)
   }
 
   function onBtnResetClick() {
@@ -91,10 +94,10 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
         });
       }
     });
-    sliderShift = 0;
-    sliderSize = dragBox.scrollWidth;
-    showArrows();
-    dragBox.style.left = `${sliderShift}px`;
+    sliderSetStates.sliderShift = 0;
+    sliderSetStates.sliderSize = dragBox.scrollWidth;
+    showArrows(sliderSetStates, leftBtn, rightBtn);
+    dragBox.style.left = `${sliderSetStates.sliderShift}px`;
     /*controlsBox.style = '';
     infoBox.textContent = '';*/
     checkTask.classList.remove("chek_answer_rightChoice_color");
@@ -132,7 +135,6 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
       checkTask.classList.remove("chek_answer_rightChoice_color");
     }
   }
-
   const arrayOfDropElementsLength = dropCards.length;
   switch (arrayOfDropElementsLength) {
     case 2:
@@ -154,7 +156,6 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
     default:
       break;
   }
-
   function mouseDown(event) {
     if (event.button !== 0) return;
     /*if (event.target.classList.contains('buttonPlayPausePlayPause_wrap')) {
@@ -289,34 +290,6 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
       draggingItem.removeEventListener("pointerup", onpointerup);
     }
   }
-  // функция для смены стилей
-  function changeStyles(draggingElem) {
-    draggingElem.style.position = "relative ";
-    draggingElem.style.zIndex = null;
-    draggingElem.style.top = null;
-    draggingElem.style.left = null;
-  }
-
-  // функция для возврата элемента в первоначальную область
-  function dragAppend(dropPlace, draggingElem, findIdx) {
-    const referenceElement = [...dropPlace.children][findIdx];
-    dropPlace.insertBefore(draggingElem, referenceElement);
-    changeStyles(draggingElem);
-    //sliderShift = 0;
-    sliderSize = dragBox.scrollWidth;
-    showArrows();
-    dragBox.style.left = `${sliderShift}px`;
-  }
-
-  // функция для размещения элемента в области, куда его перетаскивают
-  function dropAppend(dropPlace, draggingElem) {
-    dropPlace.appendChild(draggingElem);
-    changeStyles(draggingElem);
-    sliderSize = dragBox.scrollWidth;
-    showArrows();
-  }
-
-  //console.log(widthPic)
   function createDropPictureCardsMarkup(pictures) {
     let widthPic = 100 / dropCards.length - 2;
     return pictures
@@ -333,7 +306,7 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
         const isSound =
           picture.audioSrc &&
           `
-                      <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" drop-data=${picture.id}>
+                      <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" ${soundDataAttribute}=${picture.id}>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
                         <audio class="withSlider_dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none !important">
@@ -350,7 +323,7 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
                ${isSound}
                ${isText}
             </div>
-            <div drop-data=${picture.tag} class="withSlider_dropPlace_imageBox" style="width: 100%; "></div>
+            <div ${soundDataAttribute}=${picture.tag} class="withSlider_dropPlace_imageBox" style="width: 100%; "></div>
               </div>
                                   `;
       })
@@ -370,7 +343,7 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
                    />`;
         const isSound =
           picture.audioSrc &&
-          `           <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" drop-data=${picture.id}>
+          `           <div class="buttonPlayPausePlayPause_wrap buttonPlayPause--play" ${soundDataAttribute}=${picture.id}>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--one"></div>
                         <div class="buttonPlayPause__shape buttonPlayPause__shape--two"></div>
                         <audio class="withSlider_dndIWS_audio" id=${picture.id} src=${picture.audioSrc} style="display:none !important">
@@ -395,131 +368,16 @@ function renderDndWithSliderMarkup(dropCards, dragCards, task) {
       .join("");
   }
 
-  function shuffleCards(array) {
-    const length = array.length;
-    for (let i = length; i > 0; i--) {
-      const randomIndex = Math.floor(Math.random() * i);
-      const currentIndex = i - 1;
-      const temp = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temp;
-    }
-    return array;
-  }
   const audioFiles = task.querySelectorAll(".withSlider_dndIWS_audio");
   const audioIcons = task.querySelectorAll(".buttonPlayPausePlayPause_wrap");
-
   [...audioIcons].forEach((el) => {
-    el.addEventListener("click", onSoundIconClick);
+    el.addEventListener("click", onAudioClick);
   });
-  /*[...audioFiles].forEach((el) =>
-    el.addEventListener("ended", (e) => {
-      e.target.parentElement.classList.remove("animatingSoundIconPlay");
-      e.target.parentElement.classList.remove("staticSoundIconPause");
 
-      isPaused = false;
-    })
-  );*/
-
-  /*function onSoundIconClick(e) {
-    let isPlaying = false;
-    e.stopPropagation()
-    //findSoundAndPlayPause("drop-data", e.target);
-    const audio = [...audioFiles].find(
-      (el) => el.id === e.target.getAttribute('drop-data')
-    );
-    isPlaying ? audio.pause() : audio.play();
-    e.target.classList.toggle('buttonPlayPause--active');
-    audio.onplaying = function () {
-      isPlaying = true;
-    };
-    audio.onpause = function () {
-      isPlaying = false;
-    };
-    audio.onended = function () {
-      e.target.classList.remove('buttonPlayPause--active');
-      isPlaying = false;
-    };
-    //findedSound.play()
-  }*/
-
-  let currentAudio;
-  let currentAudioIcon;
-  let isPlaying = false;
-
-  function onSoundIconClick(e) {
-    if (currentAudio && currentAudioIcon !== e.target) {
-      currentAudio.pause();
-      currentAudio.currentTime = 0;
-      isPlaying = false;
-      currentAudioIcon.classList.remove("buttonPlayPause--active");
-    }
-
-    e.stopPropagation();
-    const audio = [...audioFiles].find(
-      (el) => el.id === e.target.getAttribute("drop-data")
-    );
-
-    currentAudioIcon = e.target;
-    currentAudio = audio;
-    isPlaying ? audio.pause() : audio.play();
-    e.target.classList.toggle("buttonPlayPause--active");
-    audio.onplaying = function () {
-      isPlaying = true;
-    };
-    audio.onpause = function () {
-      isPlaying = false;
-    };
-    audio.onended = function () {
-      e.target.classList.remove("buttonPlayPause--active");
-      isPlaying = false;
-      currentAudio = null;
-      currentAudioIcon = null;
-    };
+  function onAudioClick(e) {
+    onSoundIconClick(e, soundSetStates, audioFiles, soundDataAttribute)
   }
-  function scaleImage(targetEl) {
-    let modal = document.createElement("div");
-    modal.style.position = "fixed";
-    modal.style.left = 0;
-    modal.style.top = 0;
-    modal.style.bottom = 0;
-    modal.style.right = 0;
-    modal.style.background = "rgba(0,0,0,0.5)";
-    modal.style.zIndex = 100;
-    modal.style.display = "flex";
-    modal.style.justifyContent = "center";
-    modal.style.flexDirection = "column";
-    modal.style.alignItems = "center";
 
-    let div = document.createElement("div");
-    div.style.width = "50%";
-    div.style.height = "80%";
-    div.style.textAlign = "center";
-    let img = document.createElement("img");
-    if (targetEl.tagName === "IMG") {
-      img.src = targetEl.src;
-    } else {
-      img.src = targetEl.style.backgroundImage.slice(5, -2);
-    }
-    img.style.maxWidth = "100%";
-    img.style.maxHeight = "100%";
-
-    div.append(img);
-    modal.append(div);
-    let close = document.createElement("div");
-    close.classList.add(`icon_close_button`);
-    close.classList.add(`close_icon_white`);
-    close.style.marginLeft = "100%";
-    close.style.cursor = "pointer";
-
-    div.append(close);
-    document.body.style.overflow = "hidden";
-    modal.addEventListener("pointerdown", () => {
-      modal.remove();
-      document.body.style.overflow = "visible";
-    });
-    document.body.append(modal);
-  }
 }
 
-export default renderDndWithSliderMarkup;
+// export default renderDndWithSliderMarkup;

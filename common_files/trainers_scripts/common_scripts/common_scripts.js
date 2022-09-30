@@ -1,6 +1,6 @@
 // увеличение картинки
 
-function scaleImage(targetEl) {
+export function scaleImage(targetEl) {
     let modal = document.createElement("div");
     modal.style.position = "fixed";
     modal.style.left = 0;
@@ -44,20 +44,20 @@ function scaleImage(targetEl) {
 
 // вывод и сброс результатов проверки в панели
 
-function checkingAnswerPositive(controlsBox, infoBox) {
+export function checkingAnswerPositive(controlsBox, infoBox) {
     controlsBox.classList.add("chek_answer_rightChoice_color");
     infoBox.innerHTML =
         '<div class="answer_indicator">&#128516;&nbsp;&nbsp;Молодец!</div>';
 }
 
-function checkingAnswerNegative(controlsBox, infoBox) {
+export function checkingAnswerNegative(controlsBox, infoBox) {
     controlsBox.classList.add("chek_answer_wrongChoice_color");
 
     infoBox.innerHTML =
         '<div class="answer_indicator">&#128528;&nbsp;&nbsp;Попробуй&nbsp;еще!</div>';
 }
 
-function checkingAnswerReset(controlsBox, infoBox) {
+export function checkingAnswerReset(controlsBox, infoBox) {
     controlsBox.classList.remove("chek_answer_wrongChoice_color");
     controlsBox.classList.remove("chek_answer_rightChoice_color");
 
@@ -67,21 +67,21 @@ function checkingAnswerReset(controlsBox, infoBox) {
 
 // управление индикацией проверенных элементов
 
-function removeActiveCardClass(card) {
+export function removeActiveCardClass(card) {
     card.classList.remove("targetChoice_color");
     card.classList.remove("rightChoice_answered");
     card.classList.remove("wrongChoice_answered");
-}
+} 
 
-function addCheckClass(card) {
+export function addCheckClass(card) {
     card.classList.add("targetChoice_color");
 }
 
-function addRightChoiceClass(card) {
+export function addRightChoiceClass(card) {
     card.classList.add("rightChoice_answered");
 }
 
-function addWrongChoiceClass(card) {
+export function addWrongChoiceClass(card) {
     card.classList.add("wrongChoice_answered");
 }
 
@@ -96,41 +96,38 @@ function addWrongChoiceClass(card) {
   isPlaying: false
 };
 */
-function onSoundIconClick(soundSet, allAudioFiles, audioAttribute) {
-    return function (e) {
-        if (soundSet.currentAudio && soundSet.currentAudioIcon !== e.target) {
-            soundSet.currentAudio.pause();
-            soundSet.currentAudio.currentTime = 0;
-            soundSet.isPlaying = false;
-            soundSet.currentAudioIcon.classList.remove("buttonPlayPause--active");
-        }
-
-        e.stopPropagation();
-        const audio = [...allAudioFiles].find(
-            (el) => el.id === e.target.getAttribute(audioAttribute)
-        );
-
-        soundSet.currentAudioIcon = e.target;
-        soundSet.currentAudio = audio;
-        soundSet.isPlaying ? audio.pause() : audio.play();
-        e.target.classList.toggle("buttonPlayPause--active");
-        audio.onplaying = function () {
-            soundSet.isPlaying = true;
-        };
-        audio.onpause = function () {
-            soundSet.isPlaying = false;
-        };
-        audio.onended = function () {
-            e.target.classList.remove("buttonPlayPause--active");
-            soundSet.isPlaying = false;
-            soundSet.currentAudio = null;
-            soundSet.currentAudioIcon = null;
-        };
-
+export function onSoundIconClick(e, soundSet, allAudioFiles, audioAttribute) {
+    if (soundSet.currentAudio && soundSet.currentAudioIcon !== e.target) {
+        soundSet.currentAudio.pause();
+        soundSet.currentAudio.currentTime = 0;
+        soundSet.isPlaying = false;
+        soundSet.currentAudioIcon.classList.remove("buttonPlayPause--active");
     }
+
+    e.stopPropagation();
+    const audio = [...allAudioFiles].find(
+        (el) => el.id === e.target.getAttribute(audioAttribute)
+    );
+
+    soundSet.currentAudioIcon = e.target;
+    soundSet.currentAudio = audio;
+    soundSet.isPlaying ? audio.pause() : audio.play();
+    e.target.classList.toggle("buttonPlayPause--active");
+    audio.onplaying = function () {
+        soundSet.isPlaying = true;
+    };
+    audio.onpause = function () {
+        soundSet.isPlaying = false;
+    };
+    audio.onended = function () {
+        e.target.classList.remove("buttonPlayPause--active");
+        soundSet.isPlaying = false;
+        soundSet.currentAudio = null;
+        soundSet.currentAudioIcon = null;
+    };
 }
 
-function resetSound(soundSet) {
+export function resetSound(soundSet) {
     if (soundSet.currentAudio && soundSet.currentAudioIcon) {
         soundSet.currentAudio.pause();
         soundSet.currentAudio.currentTime = 0;
@@ -139,11 +136,11 @@ function resetSound(soundSet) {
     }
 }
 // рандомайзер объектов
-function getRandomPositionToCard(card) {
+export function getRandomPositionToCard(card) {
     let randomPos = Math.floor(Math.random() * 12);
     card.style.order = randomPos;
 }
-function shuffleCards(array) {
+export function shuffleCards(array) {
     const length = array.length;
     for (let i = length; i > 0; i--) {
         const randomIndex = Math.floor(Math.random() * i);
@@ -165,16 +162,16 @@ let sliderSetStates = {
 }
 
 
-  leftBtn.addEventListener("click", () => onBtnLeftClick(sliderSetStates, dragBox, leftBtn, rightBtn), false);
-  rightBtn.addEventListener("click", () => onBtnRightClick(sliderSetStates, dragBox, leftBtn, rightBtn), false);
+onBtnLeftClick(sliderSetStates, dragBox, leftBtn, rightBtn);
+onBtnRightClick(sliderSetStates, dragBox, leftBtn, rightBtn);
 */
 
-function getBlocksSizes(sliderSet, dragContainer) {
+export function getBlocksSizes(sliderSet, dragContainer) {
     sliderSet.sliderSize = dragContainer.scrollWidth;
     sliderSet.sliderItemWidth = dragContainer.children[0].clientWidth;
 }
 
-function onBtnLeftClick(sliderSet, dragContainer, leftButton, rightButton) {
+export function onBtnLeftClick(sliderSet, dragContainer, leftButton, rightButton) {
     getBlocksSizes(sliderSet, dragContainer);
 
     if (sliderSet.sliderShift < 0) {
@@ -185,7 +182,7 @@ function onBtnLeftClick(sliderSet, dragContainer, leftButton, rightButton) {
     showArrows(sliderSet, leftButton, rightButton);
 }
 
-function onBtnRightClick(sliderSet, dragContainer, leftButton, rightButton) {
+export function onBtnRightClick(sliderSet, dragContainer, leftButton, rightButton) {
 
     getBlocksSizes(sliderSet, dragContainer);
 
@@ -196,7 +193,7 @@ function onBtnRightClick(sliderSet, dragContainer, leftButton, rightButton) {
     showArrows(sliderSet, leftButton, rightButton);
 }
 
-function showArrows(sliderSet, leftButton, rightButton) {
+export function showArrows(sliderSet, leftButton, rightButton) {
     if (sliderSet.sliderShift === 0) {
         leftButton.classList.add("noDisplayElement");
     } else leftButton.classList.remove("noDisplayElement");
@@ -214,7 +211,7 @@ function showArrows(sliderSet, leftButton, rightButton) {
     counter: 1, // начальный счетчик
   };
 */
-function changeSlideMoveLeft(
+export function changeSlideMoveLeft(
     slideshowParameters, // данные для слайда
     numberOfSlide, //блок, куда пишется цифра
     arrayOfSlides, // массив слайдов
@@ -238,7 +235,7 @@ function changeSlideMoveLeft(
     }
 }
 
-function changeSlideMoveRight(
+export function changeSlideMoveRight(
     slideshowParameters, // данные для слайда
     numberOfSlide, //блок, куда пишется цифра
     arrayOfSlides, // массив слайдов
@@ -266,20 +263,21 @@ function changeSlideMoveRight(
 }
 
 // сброс стилей и append
-function changeStyles(draggingElem) {
+export function changeStyles(draggingElem) {
     draggingElem.style.position = "relative ";
     draggingElem.style.zIndex = null;
     draggingElem.style.top = null;
     draggingElem.style.left = null;
 }
 
-function dragAppend(dropPlace, draggingElem, findIdx) {
+export function dragAppend(dropPlace, draggingElem, findIdx) {
     const referenceElement = [...dropPlace.children][findIdx];
     dropPlace.insertBefore(draggingElem, referenceElement);
     changeStyles(draggingElem);
 }
 
-function dropAppend(dropPlace, draggingElem) {
+export function dropAppend(dropPlace, draggingElem) {
     dropPlace.appendChild(draggingElem);
     changeStyles(draggingElem);
 }
+

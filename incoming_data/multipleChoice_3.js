@@ -1,4 +1,4 @@
-import renderMultipleChoiceImgSoundMarkup from "../common_files/trainers_scripts/individual_scripts/renderMultipleChoiceImgSoundMarkup.js";
+import {renderMultipleChoiceImgSoundMarkup} from "../common_files/trainers_scripts/individual_scripts/renderMultipleChoiceImgSoundMarkup.js";
 (() => {
   // массив входящих картинок (минимум 4, максимум 15 элементов),
   //поле title заполняется по необходимости, если заголовка у картинки нет, то ставится ''

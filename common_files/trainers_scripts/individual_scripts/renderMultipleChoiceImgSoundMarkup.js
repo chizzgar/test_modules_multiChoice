@@ -311,4 +311,4 @@ export function renderMultipleChoiceImgSoundMarkup(
     document.body.append(modal);
   }
 }
-export default renderMultipleChoiceImgSoundMarkup;
+// export default renderMultipleChoiceImgSoundMarkup;
