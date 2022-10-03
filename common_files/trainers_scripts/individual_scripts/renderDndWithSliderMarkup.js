@@ -1,21 +1,18 @@
-import { onSoundIconClick } from "../common_scripts/common_scripts.js";
-import { shuffleCards } from "../common_scripts/common_scripts.js";
-import { scaleImage } from "../common_scripts/common_scripts.js";
-import { changeStyles } from "../common_scripts/common_scripts.js";
-import { dragAppend } from "../common_scripts/common_scripts.js";
-import { dropAppend } from "../common_scripts/common_scripts.js";
-import { onBtnLeftClick } from "../common_scripts/common_scripts.js";
-import { onBtnRightClick } from "../common_scripts/common_scripts.js";
-import { showArrows } from "../common_scripts/common_scripts.js";
-// import { getBlocksSizes } from "../common_scripts/common_scripts.js";
+import {
+  onSoundIconClick,
+  shuffleCards,
+  scaleImage,
+  dragAppend,
+  dropAppend,
+  onBtnLeftClick,
+  onBtnRightClick,
+  showArrows
+} from "../common_scripts/common_scripts.js";
+
 
 export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
   let draggingItem;
   let elemBelow;
-
-  // let sliderItemWidth;
-  // let sliderSize;
-  // let sliderShift = 0;
 
   let sliderSetStates = {
     sliderItemWidth: null,
@@ -23,9 +20,7 @@ export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
     sliderWrapperSize: null,
     sliderShift: 0
   }
-  // let currentAudio;
-  // let currentAudioIcon;
-  // let isPlaying = false;
+
   const soundDataAttribute = "drop-data";
   let soundSetStates = {
     currentAudio: null,
@@ -98,8 +93,6 @@ export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
     sliderSetStates.sliderSize = dragBox.scrollWidth;
     showArrows(sliderSetStates, leftBtn, rightBtn);
     dragBox.style.left = `${sliderSetStates.sliderShift}px`;
-    /*controlsBox.style = '';
-    infoBox.textContent = '';*/
     checkTask.classList.remove("chek_answer_rightChoice_color");
     checkTask.classList.remove("chek_answer_wrongChoice_color");
     chek_answerTxt.firstElementChild !== null &&
@@ -379,5 +372,3 @@ export function renderDndWithSliderMarkup(dropCards, dragCards, task) {
   }
 
 }
-
-// export default renderDndWithSliderMarkup;
